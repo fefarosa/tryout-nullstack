@@ -7,3 +7,18 @@
 	align-content: center;
   margin: 20px;
 }
+
+.image {  
+  margin: 20px;
+  height: 170px;
+  border-radius: 50%;
+}
+
+.container-column {
+  display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}

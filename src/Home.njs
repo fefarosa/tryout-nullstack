@@ -3,26 +3,26 @@ import axios from 'axios';
 import './Home.scss';
 
 class Home extends Nullstack {
-  users = []
+  username = '';
 
-  static async fetchApi() {
-    axios.get(`https://api.github.com/users/${user}`)
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  async fetchApi() {
+    const response = await fetch(
+      `https://api.github.com/users/${this.username}`
+    );
+    const data = await response.json();
+    console.log(data);
+    this.user = data;
   }
 
   renderSearchBar() {
     return (
-      <div>
+      <form onsubmit={this.fetchApi}>
         <div class='input-group flex-nowrap'>
           <span class='input-group-text' id='addon-wrapping'>
             @
           </span>
           <input
+            bind={this.username}
             type='text'
             class='form-control'
             placeholder='Username'
@@ -35,21 +35,29 @@ class Home extends Nullstack {
             Search
           </button>
         </div>
-      </div>
+      </form>
     );
   }
 
   renderResults() {
-
+    if (!this.user) return false;
+    return (
+      <div class='container-column'>
+        <h2>{this.user.login}</h2>
+        <h4>{this.user.name}</h4>
+          <img class='image' src={this.user.avatar_url} />
+       
+      </div>
+    );
   }
 
   render() {
     return (
       <div>
-       <div class='container'>
+        <div class='container'>
           <SearchBar />
-          <Results />
         </div>
+        <Results />
       </div>
     );
   }
