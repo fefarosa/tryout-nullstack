@@ -1,6 +1,6 @@
 import Nullstack from 'nullstack';
 import axios from 'axios';
-import ''
+import './Home.scss';
 
 class Home extends Nullstack {
   users = []
@@ -23,7 +23,6 @@ class Home extends Nullstack {
             @
           </span>
           <input
-            bind={this.users}
             type='text'
             class='form-control'
             placeholder='Username'
@@ -49,6 +48,7 @@ class Home extends Nullstack {
       <div>
        <div class='container'>
           <SearchBar />
+          <Results />
         </div>
       </div>
     );
